@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Repository("productMySQLRepository")
+@Primary
 public class ProductRepositoryA implements ProductRepository {
     public ProductRepositoryA() {
         System.out.println("Creando la instancia de " + ProductRepositoryA.class.getSimpleName());

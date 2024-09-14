@@ -15,10 +15,10 @@ public class SpringBootIoCApplication {
 
 	private ProductService productService;
 
-	@Autowired
-	public SpringBootIoCApplication(ProductService productService) {
-		this.productService = productService;
-	}
+
+//	public SpringBootIoCApplication(ProductService productService) {
+//		this.productService = productService;
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootIoCApplication.class, args);
@@ -30,5 +30,10 @@ public class SpringBootIoCApplication {
 			productService.save("Teclado RGB");
 			productService.remove("Auriculares basicos");
 		};
+	}
+
+	@Autowired
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
 	}
 }

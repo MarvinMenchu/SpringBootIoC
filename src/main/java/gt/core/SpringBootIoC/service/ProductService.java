@@ -13,7 +13,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     @Autowired
-    public ProductService(@Qualifier("productMySQLRepository") ProductRepository productRepository) {
+    public ProductService(@Qualifier("productXMLRepository") ProductRepository productRepository) {
         this.productRepository = productRepository;
         System.out.println("Creando la instancia de " + ProductService.class.getSimpleName());
     }

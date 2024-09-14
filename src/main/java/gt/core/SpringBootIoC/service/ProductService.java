@@ -1,25 +1,32 @@
 package gt.core.SpringBootIoC.service;
 
 import gt.core.SpringBootIoC.repository.ProductRepository;
-import gt.core.SpringBootIoC.repository.ProductRepositoryA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+//@Component
+@Service
 public class ProductService {
 
+    private ProductRepository productRepository;
+
     @Autowired
-    //@Qualifier("productMySQLRepository")
-    private ProductRepository productRepositoryA;
+    public ProductService(@Qualifier("productMySQLRepository") ProductRepository productRepository) {
+        this.productRepository = productRepository;
+        System.out.println("Creando la instancia de " + ProductService.class.getSimpleName());
+    }
 
     public ProductService() {
         System.out.println("Creando la instancia de " + ProductService.class.getSimpleName());
     }
 
     public void save(String name) {
-        productRepositoryA.save(name);
+        productRepository.save(name);
     }
 
     public void remove(String name) {
-        productRepositoryA.remove(name);
+        productRepository.remove(name);
     }
 }

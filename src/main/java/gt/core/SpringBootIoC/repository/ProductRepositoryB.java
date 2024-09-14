@@ -1,5 +1,10 @@
 package gt.core.SpringBootIoC.repository;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+@Repository("productXMLRepository")
 public class ProductRepositoryB implements ProductRepository {
 
     public ProductRepositoryB() {

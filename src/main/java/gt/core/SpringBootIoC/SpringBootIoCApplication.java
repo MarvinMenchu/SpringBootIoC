@@ -29,6 +29,7 @@ public class SpringBootIoCApplication {
 		return args -> {
 			productService.save("Teclado RGB");
 			productService.remove("Auriculares basicos");
+
 		};
 	}
 

@@ -1,6 +1,8 @@
 package gt.core.SpringBootIoC.service;
 
 import gt.core.SpringBootIoC.repository.ProductRepository;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,17 @@ public class ProductService {
 
     public ProductService() {
         System.out.println("Creando la instancia de " + ProductService.class.getSimpleName());
+    }
+
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("=======> Creando la instancia de " + ProductService.class.getSimpleName());
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("=======> Destruyendo la instancia de " + ProductService.class.getSimpleName());
     }
 
     public void save(String name) {

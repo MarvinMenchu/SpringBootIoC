@@ -1,5 +1,8 @@
 package gt.core.SpringBootIoC.repository;
 
+import gt.core.SpringBootIoC.service.ProductService;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -7,8 +10,18 @@ import org.springframework.stereotype.Repository;
 @Repository("productMySQLRepository")
 @Primary
 public class ProductRepositoryA implements ProductRepository {
-    public ProductRepositoryA() {
-        System.out.println("Creando la instancia de " + ProductRepositoryA.class.getSimpleName());
+//    public ProductRepositoryA() {
+//        System.out.println("Creando la instancia de " + ProductRepositoryA.class.getSimpleName());
+//    }
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("=======> Creando la instancia de " + this.getClass().getSimpleName());
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("=======> Destruyendo la instancia de " + this.getClass().getSimpleName());
     }
 
     public void save(String name) {

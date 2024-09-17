@@ -12,7 +12,7 @@ public class HttpClientConfig {
     // cuarta forma de inyectar dependencias por medio de un método
     @Bean
     public RestTemplate restTemplate(@Qualifier("productXMLRepository") ProductRepository productRepository) {
-        System.out.println("Creando ub RestTemplate");
+        System.out.println("Creando un RestTemplate");
         productRepository.save("T-SHIT M");
         return new RestTemplate();
     }

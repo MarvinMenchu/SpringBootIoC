@@ -5,11 +5,21 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.ApplicationScope;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 //@Component
 @Service
+//@Scope(value = "application")
+//@SessionScope // atajos
+@RequestScope
+//@ApplicationScope
 public class ProductService {
 
     private ProductRepository productRepository;
@@ -27,12 +37,12 @@ public class ProductService {
 
     @PostConstruct
     public void postConstruct() {
-        System.out.println("=======> Creando la instancia de " + ProductService.class.getSimpleName());
+        System.out.println("=======> Creando la instancia de " + this.getClass().getSimpleName());
     }
 
     @PreDestroy
     public void preDestroy() {
-        System.out.println("=======> Destruyendo la instancia de " + ProductService.class.getSimpleName());
+        System.out.println("=======> Destruyendo la instancia de " + this.getClass().getSimpleName());
     }
 
     public void save(String name) {

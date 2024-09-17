@@ -8,8 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
+@RestController
 public class SpringBootIoCApplication {
 
 
@@ -24,17 +27,23 @@ public class SpringBootIoCApplication {
 		SpringApplication.run(SpringBootIoCApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandUsingAutowired() {
-		return args -> {
-			productService.save("Teclado RGB");
-			productService.remove("Auriculares basicos");
-
-		};
-	}
+//	@Bean
+//	public CommandLineRunner commandUsingAutowired() {
+//		return args -> {
+//			productService.save("Teclado RGB");
+//			productService.remove("Auriculares basicos");
+//
+//		};
+//	}
 
 	@Autowired
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
+	}
+
+	@RequestMapping("/example")
+	public String example() {
+		productService.save("Teclado RGB");
+		return "Hola Spring Boot IoC";
 	}
 }

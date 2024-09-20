@@ -5,12 +5,16 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 //@Component
 @Service
 public class ProductService {
+
+    @Value("${messages.success}")
+    private String message;
 
     private ProductRepository productRepository;
 
@@ -28,6 +32,7 @@ public class ProductService {
     @PostConstruct
     public void postConstruct() {
         System.out.println("=======> Creando la instancia de " + ProductService.class.getSimpleName());
+        System.out.println("=======> Mensaje desde application.properties: " + message);
     }
 
     @PreDestroy

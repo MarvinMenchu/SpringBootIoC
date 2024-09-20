@@ -5,6 +5,7 @@ import gt.core.SpringBootIoC.repository.ProductRepositoryB;
 import gt.core.SpringBootIoC.service.ProductService;
 import gt.core.SpringBootIoC.service.ShoppingCarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +19,9 @@ import java.util.List;
 @RestController
 public class SpringBootIoCApplication {
 
+	// usando spl
+	@Value("${messages.success} y concatenando mas contenido, #{1 + 1}, -> #{@componentA.getClassName('camisa manga corta')}")
+	private String message;
 
 	private ProductService productService;
 
@@ -51,6 +55,11 @@ public class SpringBootIoCApplication {
 	public String example() {
 		productService.save("Teclado RGB");
 		return "Hola Spring Boot IoC";
+	}
+
+	@RequestMapping("/get-message")
+	public String getMessage() {
+		return message;
 	}
 
 	@RequestMapping("/add-product")
